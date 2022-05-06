@@ -1,6 +1,6 @@
 options:
   parameters:
-    author: ''
+    author: labcom
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: segundo_punto
+    id: parte_dos_lab1
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: segundo_punto
+    title: Parte_dos
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -33,16 +33,88 @@ options:
     state: enabled
 
 blocks:
-- name: samp_rate
-  id: variable
+- name: freq_a
+  id: variable_qtgui_range
   parameters:
     comment: ''
-    value: '48000'
+    gui_hint: ''
+    label: Frequency
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 1e3
+    step: 1e3
+    stop: 400e3
+    value: 45e3
+    widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 92.0]
+    coordinate: [392, 12.0]
+    rotation: 0
+    state: true
+- name: freq_b
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Frequency B
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 1e3
+    step: 1e3
+    stop: 600e3
+    value: 504e3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [520, 12.0]
+    rotation: 0
+    state: true
+- name: freq_c
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Frequency C
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 1e3
+    step: 1e3
+    stop: 40e3
+    value: 45e3/2
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 12.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Frecuencia de muestreo
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 1e3
+    step: 1e3
+    stop: 40*(freq_a+freq_b+freq_c)
+    value: 20*(freq_a+freq_b+freq_c)
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [192, 12.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -52,7 +124,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: '1000'
+    freq: 2e3
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -64,7 +136,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 116.0]
+    coordinate: [144, 444.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0_0
@@ -74,7 +146,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: '1000'
+    freq: 2e3
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -86,7 +158,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 244.0]
+    coordinate: [144, 188.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0_1
@@ -96,7 +168,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: '1000'
+    freq: 2e3
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -108,7 +180,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 380.0]
+    coordinate: [144, 316.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_xx_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '3'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [480, 328.0]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -127,7 +217,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [800, 156.0]
+    coordinate: [680, 356.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -162,7 +252,7 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     fc: '0'
-    fftsize: '1024'
+    fftsize: '32768'
     freqhalf: 'True'
     grid: 'False'
     gui_hint: ''
@@ -180,8 +270,8 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: QT GUI Plot
-    nconnections: '3'
+    name: '""'
+    nconnections: '1'
     norm_window: 'False'
     showports: 'False'
     tr_chan: '0'
@@ -208,7 +298,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1168, 380.0]
+    coordinate: [920, 284.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -264,8 +354,8 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: QT GUI Plot
-    nconnections: '3'
+    name: '""'
+    nconnections: '1'
     size: '1024'
     srate: samp_rate
     stemplot: 'False'
@@ -305,81 +395,17 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1152, 160.0]
-    rotation: 0
-    state: true
-- name: rational_resampler_xxx_0
-  id: rational_resampler_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    decim: '1'
-    fbw: '0'
-    interp: '1'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    taps: '[]'
-    type: fff
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [536, 132.0]
-    rotation: 0
-    state: true
-- name: rational_resampler_xxx_0_0
-  id: rational_resampler_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    decim: '1'
-    fbw: '0'
-    interp: '4'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    taps: '[]'
-    type: fff
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [536, 260.0]
-    rotation: 0
-    state: true
-- name: rational_resampler_xxx_0_1
-  id: rational_resampler_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    decim: '4'
-    fbw: '0'
-    interp: '1'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    taps: '[]'
-    type: fff
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [536, 396.0]
+    coordinate: [920, 420.0]
     rotation: 0
     state: true
 
 connections:
-- [analog_sig_source_x_0, '0', rational_resampler_xxx_0, '0']
-- [analog_sig_source_x_0_0, '0', rational_resampler_xxx_0_0, '0']
-- [analog_sig_source_x_0_1, '0', rational_resampler_xxx_0_1, '0']
+- [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '2']
+- [analog_sig_source_x_0_0, '0', blocks_multiply_xx_0, '0']
+- [analog_sig_source_x_0_1, '0', blocks_multiply_xx_0, '1']
+- [blocks_multiply_xx_0, '0', blocks_throttle_0, '0']
 - [blocks_throttle_0, '0', qtgui_freq_sink_x_0, '0']
 - [blocks_throttle_0, '0', qtgui_time_sink_x_0, '0']
-- [rational_resampler_xxx_0, '0', blocks_throttle_0, '0']
-- [rational_resampler_xxx_0_0, '0', qtgui_freq_sink_x_0, '1']
-- [rational_resampler_xxx_0_0, '0', qtgui_time_sink_x_0, '1']
-- [rational_resampler_xxx_0_1, '0', qtgui_freq_sink_x_0, '2']
-- [rational_resampler_xxx_0_1, '0', qtgui_time_sink_x_0, '2']
 
 metadata:
   file_format: 1

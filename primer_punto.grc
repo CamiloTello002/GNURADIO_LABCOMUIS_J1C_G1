@@ -51,21 +51,30 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [424, 12.0]
+    coordinate: [360, 12.0]
     rotation: 0
     state: true
 - name: samp_rate
-  id: variable
+  id: variable_qtgui_range
   parameters:
     comment: ''
-    value: '32000'
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 1e3
+    step: 1e3
+    stop: 80e3
+    value: 10e3
+    widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [272, 12.0]
+    coordinate: [192, 12.0]
     rotation: 0
-    state: enabled
+    state: true
 - name: analog_sig_source_x_0
   id: analog_sig_source_x
   parameters:
@@ -139,7 +148,7 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     fc: '0'
-    fftsize: '2048'
+    fftsize: '8192'
     freqhalf: 'True'
     grid: 'False'
     gui_hint: ''
@@ -185,7 +194,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [800, 388.0]
+    coordinate: [792, 172.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -243,9 +252,9 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '1'
-    size: '128'
+    size: '1024'
     srate: samp_rate
-    stemplot: 'False'
+    stemplot: 'True'
     style1: '1'
     style10: '1'
     style2: '1'
@@ -282,7 +291,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [800, 196.0]
+    coordinate: [800, 396.0]
     rotation: 0
     state: true
 
