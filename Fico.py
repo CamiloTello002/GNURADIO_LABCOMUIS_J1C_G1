@@ -9,7 +9,7 @@
 # Author: Piedritas
 # Copyright: 2022
 # Description: Sample rate demo
-# GNU Radio version: 3.10.1.1
+# GNU Radio version: 3.10.2.0
 
 from packaging.version import Version as StrictVersion
 
