@@ -85,7 +85,7 @@ class Fico(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self._samp_rate_range = Range(1e3, 80e3, 1e3, 10e3, 200)
+        self._samp_rate_range = Range(1e3, 160e3, 1e3, 10e3, 200)
         self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, "'samp_rate'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._samp_rate_win)
         self._freq_range = Range(1000, 40000, 1000, 2000, 200)

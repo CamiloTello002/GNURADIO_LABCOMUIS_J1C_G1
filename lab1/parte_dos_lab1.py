@@ -7,7 +7,7 @@
 # GNU Radio Python Flow Graph
 # Title: Parte_dos
 # Author: labcom
-# GNU Radio version: 3.10.1.1
+# GNU Radio version: 3.10.2.0
 
 from packaging.version import Version as StrictVersion
 
@@ -77,23 +77,23 @@ class parte_dos_lab1(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.freq_c = freq_c = 45e3/2
         self.freq_b = freq_b = 504e3
         self.freq_a = freq_a = 45e3
+        self.freq_c = freq_c = (freq_a+freq_b)/2
         self.samp_rate = samp_rate = 20*(freq_a+freq_b+freq_c)
 
         ##################################################
         # Blocks
         ##################################################
-        self._freq_c_range = Range(1e3, 40e3, 1e3, 45e3/2, 200)
-        self._freq_c_win = RangeWidget(self._freq_c_range, self.set_freq_c, "Frequency C", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_layout.addWidget(self._freq_c_win)
         self._freq_b_range = Range(1e3, 600e3, 1e3, 504e3, 200)
         self._freq_b_win = RangeWidget(self._freq_b_range, self.set_freq_b, "Frequency B", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._freq_b_win)
         self._freq_a_range = Range(1e3, 400e3, 1e3, 45e3, 200)
         self._freq_a_win = RangeWidget(self._freq_a_range, self.set_freq_a, "Frequency", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._freq_a_win)
+        self._freq_c_range = Range(1e3, 300e3, 1e3, (freq_a+freq_b)/2, 200)
+        self._freq_c_win = RangeWidget(self._freq_c_range, self.set_freq_c, "Frequency C", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._freq_c_win)
         self._samp_rate_range = Range(1e3, 40*(freq_a+freq_b+freq_c), 1e3, 20*(freq_a+freq_b+freq_c), 200)
         self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, "Frecuencia de muestreo", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._samp_rate_win)
@@ -190,9 +190,9 @@ class parte_dos_lab1(gr.top_block, Qt.QWidget):
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, samp_rate,True)
         self.blocks_multiply_xx_0 = blocks.multiply_vff(1)
-        self.analog_sig_source_x_0_1 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 2e3, 1, 0, 0)
-        self.analog_sig_source_x_0_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 2e3, 1, 0, 0)
-        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 2e3, 1, 0, 0)
+        self.analog_sig_source_x_0_1 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, freq_b, 1, 0, 0)
+        self.analog_sig_source_x_0_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, freq_a, 1, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, freq_c, 1, 0, 0)
 
 
         ##################################################
@@ -214,26 +214,31 @@ class parte_dos_lab1(gr.top_block, Qt.QWidget):
 
         event.accept()
 
-    def get_freq_c(self):
-        return self.freq_c
-
-    def set_freq_c(self, freq_c):
-        self.freq_c = freq_c
-        self.set_samp_rate(20*(self.freq_a+self.freq_b+self.freq_c))
-
     def get_freq_b(self):
         return self.freq_b
 
     def set_freq_b(self, freq_b):
         self.freq_b = freq_b
+        self.set_freq_c((self.freq_a+self.freq_b)/2)
         self.set_samp_rate(20*(self.freq_a+self.freq_b+self.freq_c))
+        self.analog_sig_source_x_0_1.set_frequency(self.freq_b)
 
     def get_freq_a(self):
         return self.freq_a
 
     def set_freq_a(self, freq_a):
         self.freq_a = freq_a
+        self.set_freq_c((self.freq_a+self.freq_b)/2)
         self.set_samp_rate(20*(self.freq_a+self.freq_b+self.freq_c))
+        self.analog_sig_source_x_0_0.set_frequency(self.freq_a)
+
+    def get_freq_c(self):
+        return self.freq_c
+
+    def set_freq_c(self, freq_c):
+        self.freq_c = freq_c
+        self.set_samp_rate(20*(self.freq_a+self.freq_b+self.freq_c))
+        self.analog_sig_source_x_0.set_frequency(self.freq_c)
 
     def get_samp_rate(self):
         return self.samp_rate

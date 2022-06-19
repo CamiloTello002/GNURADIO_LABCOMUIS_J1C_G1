@@ -51,7 +51,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 12.0]
+    coordinate: [576, 0.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -65,14 +65,14 @@ blocks:
     rangeType: float
     start: 1e3
     step: 1e3
-    stop: 80e3
+    stop: 160e3
     value: 10e3
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [192, 12.0]
+    coordinate: [296, 12.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -113,7 +113,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 300.0]
+    coordinate: [552, 316.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -302,3 +302,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0

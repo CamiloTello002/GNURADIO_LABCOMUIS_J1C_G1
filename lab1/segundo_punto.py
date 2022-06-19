@@ -6,7 +6,7 @@
 #
 # GNU Radio Python Flow Graph
 # Title: segundo_punto
-# GNU Radio version: 3.10.1.1
+# GNU Radio version: 3.10.2.0
 
 from packaging.version import Version as StrictVersion
 
@@ -86,7 +86,7 @@ class segundo_punto(gr.top_block, Qt.QWidget):
                 taps=[],
                 fractional_bw=0)
         self.rational_resampler_xxx_0_0 = filter.rational_resampler_fff(
-                interpolation=4,
+                interpolation=6,
                 decimation=1,
                 taps=[],
                 fractional_bw=0)

@@ -325,7 +325,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 132.0]
+    coordinate: [560, 136.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0_0
@@ -336,7 +336,7 @@ blocks:
     comment: ''
     decim: '1'
     fbw: '0'
-    interp: '4'
+    interp: '6'
     maxoutbuf: '0'
     minoutbuf: '0'
     taps: '[]'
@@ -345,7 +345,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 260.0]
+    coordinate: [560, 264.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0_1
@@ -365,7 +365,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 396.0]
+    coordinate: [560, 392.0]
     rotation: 0
     state: true
 
@@ -383,3 +383,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0
