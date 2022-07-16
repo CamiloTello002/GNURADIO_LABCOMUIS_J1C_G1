@@ -1,0 +1,6 @@
+/*!
+ * \defgroup block GNU Radio MODULOS_D1A C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the MODULOS_D1A GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
