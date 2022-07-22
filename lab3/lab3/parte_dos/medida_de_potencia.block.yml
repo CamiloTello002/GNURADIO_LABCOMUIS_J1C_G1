@@ -1,0 +1,36 @@
+id: medida_de_potencia
+label: QT GUI medida_de_potencia
+category: '[ModulosEfren]'
+flags: need_qt_gui
+
+parameters:
+-   id: l_vect
+    label: Longitud FFT
+    dtype: int
+    default: '1024'
+    hide: none
+-   id: gui_hint
+    label: GUI Hint
+    dtype: gui_hint
+    hide: part
+
+inputs:
+-   label: in
+    dtype: float
+    vlen: 1
+
+outputs: []
+
+templates:
+    imports: 'from medida_de_potencia import medida_de_potencia  # grc-generated hier_block'
+    make: "medida_de_potencia(\n    l_vect=${ l_vect },\n)\n<% win = 'self.%s'%id\
+        \ %>\n${ gui_hint() % win }"
+    callbacks:
+    - set_l_vect(${ l_vect })
+
+documentation: 'Camilo y Pedreros
+
+    /home/labcom/Escritorio/cosas_de_ge_ene_u_radio/lab3/parte_dos/medida_de_potencia.py'
+grc_source: /home/labcom/Escritorio/cosas_de_ge_ene_u_radio/lab3/parte_dos/medida_de_potencia.grc
+
+file_format: 1
